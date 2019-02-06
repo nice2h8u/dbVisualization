@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,8 +11,8 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "d_tr")
-public  class DTr {
+@Table(name = "d_f8")
+public  class Df8 {
 
     @Id
     private Integer num;
