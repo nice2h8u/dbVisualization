@@ -17,7 +17,7 @@ public  class DS {
     @Id
     private Integer num;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date time;
 
     private Double val;
