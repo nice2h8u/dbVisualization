@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
-</head>
-<body>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="js/rrController.js"></script>
+</head>
+<body ng-app="rrgraphs" ng-controller="ApartController">
+<div ng-controller="getAparts" >
+    <table id="Apart" class="table">
+        <thead>
+        <tr>
+
+            <th>Значение</th>
+            <th>Время</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="apart in apartsList">
+            <!--<td>{{apart.apartId}}</td>-->
+            <td>{{apart.val}}</td>
+            <td>{{apart.mil}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

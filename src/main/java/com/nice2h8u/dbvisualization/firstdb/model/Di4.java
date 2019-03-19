@@ -1,9 +1,8 @@
-package com.nice2h8u.dbvisualization.model;
+package com.nice2h8u.dbvisualization.firstdb.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,8 +11,8 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "d_tr")
-public  class DTr {
+@Table(name = "d_i4")
+public  class Di4 {
 
     @Id
     private Integer num;

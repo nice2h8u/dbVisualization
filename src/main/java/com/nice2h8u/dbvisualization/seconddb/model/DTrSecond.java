@@ -1,4 +1,4 @@
-package com.nice2h8u.dbvisualization.model;
+package com.nice2h8u.dbvisualization.seconddb.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +11,8 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "d_f8")
-public  class Df8 {
+@Table(name = "d_tr")
+public  class DTrSecond {
 
     @Id
     private Integer num;
@@ -25,12 +25,12 @@ public  class Df8 {
     private Short truthlevel;
 
 
-    @ManyToOne(targetEntity = AdjSystems.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = AdjSystemsSecond.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "parid")
-    private AdjSystems adjsystems;
+    private AdjSystemsSecond adjsystems;
 
-    @ManyToOne(targetEntity = Writers.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = WritersSecond.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "writer_id")
-    private Writers writers;
+    private WritersSecond writers;
 
 }

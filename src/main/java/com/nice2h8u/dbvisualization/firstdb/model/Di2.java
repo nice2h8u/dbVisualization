@@ -1,4 +1,4 @@
-package com.nice2h8u.dbvisualization.model;
+package com.nice2h8u.dbvisualization.firstdb.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +11,8 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "d_s")
-public  class DS {
+@Table(name = "d_i2")
+public  class Di2 {
 
     @Id
     private Integer num;

@@ -1,4 +1,4 @@
-package com.nice2h8u.dbvisualization.model;
+package com.nice2h8u.dbvisualization.seconddb.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "writers")
-public class Writers {
+public class WritersSecond {
 
     @Id
     private Short id;
@@ -17,21 +17,21 @@ public class Writers {
     private String name;
 
     @OneToMany(mappedBy = "writers")
-    private Set<DTr> d_trs = new HashSet<>();
+    private Set<DTrSecond> d_trs = new HashSet<>();
 
     @OneToMany(mappedBy = "writers")
-    private Set<DS> d_s = new HashSet<>();
+    private Set<DSSecond> d_s = new HashSet<>();
 
     @OneToMany(mappedBy = "writers")
-    private Set<Di4> d_i4s = new HashSet<>();
+    private Set<Di4Second> d_i4s = new HashSet<>();
 
     @OneToMany(mappedBy = "writers")
-    private Set<Di2> d_i2s = new HashSet<>();
+    private Set<Di2Second> d_i2s = new HashSet<>();
 
     @OneToMany(mappedBy = "writers")
-    private Set<Df8> d_f8s = new HashSet<>();
+    private Set<Df8Second> d_f8s = new HashSet<>();
 
     @OneToMany(mappedBy = "writers")
-    private Set<Df4> d_f4s = new HashSet<>();
+    private Set<Df4Second> d_f4s = new HashSet<>();
 
 }
