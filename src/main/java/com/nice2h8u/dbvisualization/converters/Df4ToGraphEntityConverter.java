@@ -23,13 +23,14 @@ public class Df4ToGraphEntityConverter  {
 
             newEntityes.add(GraphEntityDto.builder()
                     .val(converted.get(0).getVal())
-                    .mil(0L)
+                    .mil(0f)
                     .build());
             for (int i=1;i<converted.size();i++){
+                if (converted.get(i).getTruthlevel()==1)
                 newEntityes.add(
                         GraphEntityDto.builder()
                                 .val(converted.get(i).getVal())
-                                .mil(converted.get(i).getTime().getTime()-firstValueTime)
+                                .mil((converted.get(i).getTime().getTime()-firstValueTime)/1000f)
                                 .build()
 
                 );

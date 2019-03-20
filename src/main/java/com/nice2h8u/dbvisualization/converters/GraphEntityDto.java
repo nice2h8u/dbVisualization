@@ -5,13 +5,13 @@ import lombok.Builder;
 public class GraphEntityDto {
 
     private Double val;
-    private Long mil;
+    private Float mil;
 
     public GraphEntityDto() {
     }
 
     @Builder
-    public GraphEntityDto(Double val, Long mil) {
+    public GraphEntityDto(Double val, Float mil) {
         this.val = val;
         this.mil = mil;
     }
@@ -24,11 +24,11 @@ public class GraphEntityDto {
         this.val = val;
     }
 
-    public Long getMil() {
+    public Float getMil() {
         return mil;
     }
 
-    public void setMil(Long mil) {
+    public void setMil(Float mil) {
         this.mil = mil;
     }
 }

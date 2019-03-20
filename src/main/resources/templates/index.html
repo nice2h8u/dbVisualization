@@ -6,8 +6,12 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="js/rrController.js"></script>
+    <script src="js/chartRender.js"></script>
+    <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 <body ng-app="rrgraphs" ng-controller="ApartController">
+<div>
+<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
 <div ng-controller="getAparts" >
     <table id="Apart" class="table">
         <thead>
@@ -26,6 +30,6 @@
         </tbody>
     </table>
 </div>
-
+</div>
 </body>
 </html>
