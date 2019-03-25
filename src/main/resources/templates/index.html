@@ -4,32 +4,32 @@
     <meta charset="UTF-8">
     <title>Hello</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="js/libraries/angular.min.js"></script>
     <script src="js/rrController.js"></script>
-    <script src="js/chartRender.js"></script>
-    <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+     <script src="js/libraries/canvasjs.min.js"></script>
 </head>
 <body ng-app="rrgraphs" ng-controller="ApartController">
-<div>
-<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
-<div ng-controller="getAparts" >
-    <table id="Apart" class="table">
-        <thead>
-        <tr>
 
-            <th>Значение</th>
-            <th>Время</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="apart in apartsList">
-            <!--<td>{{apart.apartId}}</td>-->
-            <td>{{apart.val}}</td>
-            <td>{{apart.mil}}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<div ng-controller="getAparts">
+<div id="ТРМ1а_2" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+<!--<div  >-->
+    <!--<table id="Apart" class="table">-->
+        <!--<thead>-->
+        <!--<tr>-->
+
+            <!--<th>Значение</th>-->
+            <!--<th>Время</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr ng-repeat="apart in apartsList">-->
+            <!--&lt;!&ndash;<td>{{apart.apartId}}</td>&ndash;&gt;-->
+            <!--<td>{{apart.val}}</td>-->
+            <!--<td>{{apart.mil}}</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+<!--</div>-->
 </div>
 </body>
 </html>

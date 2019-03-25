@@ -34,7 +34,7 @@ public class RestGraphController {
         graphEntityDtos.add(entityDto);
         entityDto= new ArrayList<>();
         listOfGrapthEntityes.add(graphEntityDtos);
-        //listOfGrapthEntityes.add(graphEntityDtos);
+        listOfGrapthEntityes.add(graphEntityDtos);
 
 return  listOfGrapthEntityes;
 
