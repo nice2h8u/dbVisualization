@@ -23,12 +23,20 @@ public class RestGraphController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<GraphEntityDto> browse() {
+    public List<List<List<GraphEntityDto>>> browse() {
         Df4ToGraphEntityConverter converter = new Df4ToGraphEntityConverter();
-            List<GraphEntityDto> graphEntityDtos = new ArrayList<>();
+            List<List<List<GraphEntityDto>>> listOfGrapthEntityes = new ArrayList<>();
+           List< List<GraphEntityDto>> graphEntityDtos = new ArrayList<>();
 
-         graphEntityDtos.addAll(converter.convertAll(df4Service.findByAdjsystemName("ТРМ1а_2")));
-         graphEntityDtos.forEach(item-> System.out.println(item.getMil()));
-        return graphEntityDtos;
+        List<GraphEntityDto> entityDto = new ArrayList<>(converter.convertAll(df4Service.findByAdjsystemName("ТРМ1а_2")));
+        graphEntityDtos.add(entityDto);
+        entityDto = new ArrayList<>(converter.convertAllSecond(df4ServiceSecond.findByAdjsystemName("ТРМ1а_2")));
+        graphEntityDtos.add(entityDto);
+        entityDto= new ArrayList<>();
+        listOfGrapthEntityes.add(graphEntityDtos);
+        //listOfGrapthEntityes.add(graphEntityDtos);
+
+return  listOfGrapthEntityes;
+
     }
 }
