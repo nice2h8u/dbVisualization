@@ -15,7 +15,11 @@ app.controller("ApartController", function ($scope, $http) {
             ;
 
 
-            renderChart(getArray(objects[0].el1), getArray(objects[0].el2),"ТРМ1_А2");
+            renderChart(getArray(objects[0].el1), getArray(objects[0].el2),"ТРМ1а_2");
+            renderChart(getArray(objects[1].el1), getArray(objects[1].el2),"ТРМ2а_2");
+            renderChart(getArray(objects[2].el1), getArray(objects[2].el2),"ТРМ3а_2");
+            renderChart(getArray(objects[3].el1), getArray(objects[3].el2),"ТРМ4а_2");
+            renderChart(getArray(objects[4].el1), getArray(objects[4].el2),"ТРМ1б_2");
 
 
         }).error(function (data, status, headers, config) {
@@ -37,7 +41,7 @@ const getArray = function (ar) {
         data.push({
             x: el.mil,
             y: el.val,
-            label: "blabla"
+            // label: "blabla"
         })
     });
     return data;
@@ -70,6 +74,7 @@ const renderChart = function (data1, data2,nameOfGraph) {
                 dataPoints: data2
             }]
     });
+    console.log(nameOfGraph);
     chart.render();
 }
 

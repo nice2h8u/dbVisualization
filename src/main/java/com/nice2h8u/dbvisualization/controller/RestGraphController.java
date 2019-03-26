@@ -24,19 +24,31 @@ public class RestGraphController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<List<List<GraphEntityDto>>> browse() {
+
+        List<List<List<GraphEntityDto>>> listOfGrapthEntityes = new ArrayList<>();
+
+
+        listOfGrapthEntityes.add(addByName("ТРМ1а_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ2а_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ3а_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ4а_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ1б_2"));
+
+        return listOfGrapthEntityes;
+
+    }
+
+    public List<List<GraphEntityDto>> addByName(String name) {
+
         Df4ToGraphEntityConverter converter = new Df4ToGraphEntityConverter();
-            List<List<List<GraphEntityDto>>> listOfGrapthEntityes = new ArrayList<>();
-           List< List<GraphEntityDto>> graphEntityDtos = new ArrayList<>();
+        List<List<GraphEntityDto>> graphEntityDtos = new ArrayList<>();
 
-        List<GraphEntityDto> entityDto = new ArrayList<>(converter.convertAll(df4Service.findByAdjsystemName("ТРМ1а_2")));
+        List<GraphEntityDto> entityDto = new ArrayList<>(converter.convertAll(df4Service.findByAdjsystemName(name)));
         graphEntityDtos.add(entityDto);
-        entityDto = new ArrayList<>(converter.convertAllSecond(df4ServiceSecond.findByAdjsystemName("ТРМ1а_2")));
+
+        entityDto = new ArrayList<>(converter.convertAllSecond(df4ServiceSecond.findByAdjsystemName(name)));
         graphEntityDtos.add(entityDto);
-        entityDto= new ArrayList<>();
-        listOfGrapthEntityes.add(graphEntityDtos);
-        listOfGrapthEntityes.add(graphEntityDtos);
 
-return  listOfGrapthEntityes;
-
+        return graphEntityDtos;
     }
 }

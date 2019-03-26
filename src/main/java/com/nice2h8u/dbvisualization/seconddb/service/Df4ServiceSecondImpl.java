@@ -7,7 +7,9 @@ import com.nice2h8u.dbvisualization.seconddb.repository.Df4RepositorySecond;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -22,8 +24,10 @@ public class Df4ServiceSecondImpl implements Df4ServiceSecond {
 
 
     public List <Df4Second> findByAdjsystemName(String name){
+        List <Df4Second> result = df4Repository.findByAdjsystems_NameContaining(name);
 
-        return df4Repository.findByAdjsystems_NameContaining(name);
+        result= result.stream().sorted(Comparator.comparing(Df4Second::getTime)).collect(Collectors.toList());
+        return result;
     }
 
 
