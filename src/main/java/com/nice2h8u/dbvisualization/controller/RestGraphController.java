@@ -33,6 +33,17 @@ public class RestGraphController {
         listOfGrapthEntityes.add(addByName("ТРМ3а_2"));
         listOfGrapthEntityes.add(addByName("ТРМ4а_2"));
         listOfGrapthEntityes.add(addByName("ТРМ1б_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ2б_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ1в_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ2в_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ1г_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ2г_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ1д_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ2д_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ3б_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ3в_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ3г_2"));
+        listOfGrapthEntityes.add(addByName("ТРМ3д_2"));
 
         return listOfGrapthEntityes;
 

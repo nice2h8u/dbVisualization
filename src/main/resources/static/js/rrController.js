@@ -21,6 +21,19 @@ app.controller("ApartController", function ($scope, $http) {
             renderChart(getArray(objects[3].el1), getArray(objects[3].el2),"ТРМ4а_2");
             renderChart(getArray(objects[4].el1), getArray(objects[4].el2),"ТРМ1б_2");
 
+            renderChart(getArray(objects[5].el1), getArray(objects[5].el2),"ТРМ2б_2");
+            renderChart(getArray(objects[6].el1), getArray(objects[6].el2),"ТРМ1в_2");
+            renderChart(getArray(objects[7].el1), getArray(objects[7].el2),"ТРМ2в_2");
+            renderChart(getArray(objects[8].el1), getArray(objects[8].el2),"ТРМ1г_2");
+            renderChart(getArray(objects[9].el1), getArray(objects[9].el2),"ТРМ2г_2");
+            renderChart(getArray(objects[10].el1), getArray(objects[10].el2),"ТРМ1д_2");
+            renderChart(getArray(objects[11].el1), getArray(objects[11].el2),"ТРМ2д_2");
+            renderChart(getArray(objects[12].el1), getArray(objects[12].el2),"ТРМ3б_2");
+            renderChart(getArray(objects[13].el1), getArray(objects[13].el2),"ТРМ3в_2");
+            renderChart(getArray(objects[14].el1), getArray(objects[14].el2),"ТРМ3г_2");
+            renderChart(getArray(objects[15].el1), getArray(objects[15].el2),"ТРМ3д_2");
+           
+
 
         }).error(function (data, status, headers, config) {
 
@@ -75,6 +88,22 @@ const renderChart = function (data1, data2,nameOfGraph) {
             }]
     });
     console.log(nameOfGraph);
+
+    const someStatValue = 12;
+    const statisticsContainer = document.createElement('div');
+    //стили
+    statisticsContainer.classList.add('statistics');
+    statisticsContainer.innerHTML = String('залупа '+ someStatValue);
+    document.getElementById(nameOfGraph).appendChild(statisticsContainer);
+
+    const hiderLeftContainer = document.createElement('hiderLeft');
+    hiderLeftContainer.classList.add('hiderLeft');
+    document.getElementById(nameOfGraph).appendChild(hiderLeftContainer);
+
+    const hiderRightContainer = document.createElement('hiderRight');
+    hiderRightContainer.classList.add('hiderRight');
+    document.getElementById(nameOfGraph).appendChild(hiderRightContainer);
+
     chart.render();
-}
+};
 

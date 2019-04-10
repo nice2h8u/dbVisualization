@@ -1,0 +1,28 @@
+.chart {
+    position: relative;
+    height: 370px;
+    max-width: 920px;
+    margin: 50px auto;
+}
+
+.statistics {
+    position: absolute;
+    left: 34px;
+    bottom: -22px;
+}
+.hiderLeft {
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 15px;
+    background-color: white;
+}
+
+.hiderRight {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 65px;
+    height: 15px;
+    background-color: white;
+}
