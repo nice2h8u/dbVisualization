@@ -2,7 +2,7 @@ var app = angular.module('rrgraphs', []);
 
 app.controller("ApartController", function ($scope, $http) {
 
-
+        accordion();
     $scope.getAparts = function () {
         $http.get('/rrgraphs/').success(function (data, status, headers, config) {
 
@@ -54,8 +54,7 @@ const getArray = function (ar) {
         data.push({
             x: el.mil,
             y: el.val,
-            // label: "blabla"
-        })
+    })
     });
     return data;
 
@@ -93,9 +92,13 @@ const renderChart = function (data1, data2,nameOfGraph) {
     const statisticsContainer = document.createElement('div');
     //стили
     statisticsContainer.classList.add('statistics');
-    statisticsContainer.innerHTML = String('залупа '+ someStatValue);
+    statisticsContainer.innerHTML ='Математическое ожидание '+ someStatValue + '  Дисперсия ' + 42
+        + '  Максимум ' + 120 + ' Минимум ' + 20;
     document.getElementById(nameOfGraph).appendChild(statisticsContainer);
 
+
+
+    //hiders to hide add banners
     const hiderLeftContainer = document.createElement('hiderLeft');
     hiderLeftContainer.classList.add('hiderLeft');
     document.getElementById(nameOfGraph).appendChild(hiderLeftContainer);
@@ -105,5 +108,29 @@ const renderChart = function (data1, data2,nameOfGraph) {
     document.getElementById(nameOfGraph).appendChild(hiderRightContainer);
 
     chart.render();
+};
+
+
+
+
+const accordion = function () {
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active");
+
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
 };
 
