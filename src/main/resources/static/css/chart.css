@@ -6,11 +6,18 @@
     margin: 50px auto 150px;
 }
 
-.statistics {
+.firstStatistics {
     position: absolute;
     left: 34px;
     bottom: -50px;
     color: blue;
+}
+
+.secondStatistics {
+    position: absolute;
+    left: 34px;
+    bottom: -100px;
+    color: #ff2727;
 }
 .hiderLeft {
     position: absolute;
