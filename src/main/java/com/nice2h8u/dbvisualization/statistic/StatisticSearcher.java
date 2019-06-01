@@ -11,7 +11,7 @@ public class StatisticSearcher {
 
 
     public float findMax(List<GraphEntityDot> listOfDots) {
-        double val= listOfDots.stream()
+        double val = listOfDots.stream()
                 .max(Comparator.comparing(GraphEntityDot::getVal))
                 .get().getVal();
         return Math.round(val * 100.0) / 100.0f;
@@ -23,7 +23,7 @@ public class StatisticSearcher {
                         min(Comparator.comparing(GraphEntityDot::getVal))
                         .get().getVal();
 
-        return  Math.round(val* 100.0) / 100.0f;
+        return Math.round(val * 100.0) / 100.0f;
 
     }
 
@@ -33,13 +33,13 @@ public class StatisticSearcher {
         for (GraphEntityDot temp : listOfDots)
             t += temp.getVal();
 
-        return Math.round((t /  listOfDots.size()) * 100.0) / 100.0f;
+        return Math.round((t / listOfDots.size()) * 100.0) / 100.0f;
     }
 
     public float findDispersion(List<GraphEntityDot> listOfDots) {
         List<GraphEntityDot> tempDots = new ArrayList<>();
 
-        for (GraphEntityDot tempDot: listOfDots)
+        for (GraphEntityDot tempDot : listOfDots)
             tempDots.add(new GraphEntityDot(tempDot));
 
         float secondValue = findMatWaiting(tempDots);
@@ -47,8 +47,25 @@ public class StatisticSearcher {
 
         float firstValue = findMatWaiting(tempDots);
 
-        tempDots = null;
+
         return Math.round((firstValue - secondValue) * 100.0f) / 100.0f;
+
+    }
+
+
+    public void zoomTheGraphs(List<GraphEntityDot> firstListOfDots, List<GraphEntityDot> secondListOfDots) {
+
+
+        float firstMaxMil = firstListOfDots.get(firstListOfDots.size() - 1).getMil();
+        float secondMaxMil = secondListOfDots.get(secondListOfDots.size() - 1).getMil();
+        if (firstMaxMil > secondMaxMil) {
+            float coef = firstMaxMil / secondMaxMil;
+            secondListOfDots.forEach(dot->dot.setMil(dot.getMil()*coef));
+        }
+        else {
+            float coef = secondMaxMil / firstMaxMil;
+            firstListOfDots.forEach(dot->dot.setMil(dot.getMil()*coef));
+        }
 
     }
 }

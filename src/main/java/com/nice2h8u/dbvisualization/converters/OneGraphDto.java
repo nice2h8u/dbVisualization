@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 public class OneGraphDto {
 
+    private String name;
     private Float max;
     private Float min;
     private Float matWaiting;
@@ -18,11 +19,12 @@ public class OneGraphDto {
     private List<GraphEntityDot> graph;
 
     @Builder
-    public OneGraphDto(Float max, Float min, Float matWaiting, Float dispersion, List<GraphEntityDot> graph) {
+    public OneGraphDto(Float max, Float min, Float matWaiting, Float dispersion, List<GraphEntityDot> graph,String name) {
         this.max = max;
         this.min = min;
         this.matWaiting = matWaiting;
         this.dispersion = dispersion;
         this.graph = graph;
+        this.name = name;
     }
 }

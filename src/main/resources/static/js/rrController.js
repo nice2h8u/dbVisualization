@@ -2,27 +2,28 @@ var app = angular.module('rrgraphs', []);
 
 app.controller("ApartController", function ($scope, $http) {
 
-        accordion();
+
     $scope.getAparts = function () {
         $http.get('/rrgraphs/').success(function (data, status, headers, config) {
 
 
             console.log(data);
-            $scope.apartsList = data;
-            const objects = [];
-            data.forEach(([el1, el2]) => objects.push({el1, el2})
-            )
-            ;
-            const names = ["ТРМ1а_2","ТРМ2а_2","ТРМ3а_2","ТРМ4а_2","ТРМ1б_2","ТРМ2б_2","ТРМ1в_2","ТРМ2в_2"
-                ,"ТРМ1г_2","ТРМ2г_2","ТРМ1д_2","ТРМ2д_2","ТРМ3б_2","ТРМ3в_2","ТРМ3г_2","ТРМ3д_2"];
 
-            for (i = 0; i < names.length; i++)
-                renderChart(objects[i],names[i]);
+            const nameOfButtons = [];
+            const listOfParameters = []
+            for (i in data) {
+                nameOfButtons.push(data[i].nameOfMode);
+                listOfParameters.push(data[i].listOfParameters)
+            }
 
-            fillTheTable('painting');
+            createSpaceForGraphs(nameOfButtons, listOfParameters)
 
 
+            for (i = 0; i < listOfParameters.length; i++)
+                for (j = 0; j < listOfParameters[i].length; j++)
+                    renderChart(listOfParameters[i][j][0], listOfParameters[i][j][1], listOfParameters[i][j][0].name);
 
+            //fillTheTable('painting');
 
         }).error(function (data, status, headers, config) {
 
@@ -39,17 +40,18 @@ app.controller("ApartController", function ($scope, $http) {
 const getArray = function (ar) {
     data = [];
 
-    ar.graph.forEach(el => {
+    ar.forEach(el => {
         data.push({
-            x: el.mil,
-            y: el.val,
+        x: el.mil,
+        y: el.val,
     })
-    });
+})
+    ;
     return data;
 
 };
 
-const renderChart = function (obj,nameOfGraph) {
+const renderChart = function (el1, el2, nameOfGraph) {
     var chart = new CanvasJS.Chart(nameOfGraph, {
         zoomEnabled: true,
         animationEnabled: true,
@@ -65,14 +67,14 @@ const renderChart = function (obj,nameOfGraph) {
             showInLegend: true,
             yValueFormatString: "##.00",
             name: "Июнь",
-            dataPoints: getArray(obj.el1)
+            dataPoints: getArray(el1.graph)
         },
             {
                 type: "line",
                 showInLegend: true,
                 yValueFormatString: "##.00",
                 name: "Октябрь",
-                dataPoints: getArray(obj.el2)
+                dataPoints: getArray(el2.graph)
             }]
     });
     console.log(nameOfGraph);
@@ -81,20 +83,16 @@ const renderChart = function (obj,nameOfGraph) {
     const firstValueStatisticsContainer = document.createElement('div');
     //стили
     firstValueStatisticsContainer.classList.add('firstStatistics');
-    firstValueStatisticsContainer.innerHTML ='Математическое ожидание '+ obj.el1.matWaiting + '  Дисперсия ' + obj.el1.dispersion
-        + '  Максимум ' + obj.el1.max + ' Минимум ' + obj.el1.min;
+    firstValueStatisticsContainer.innerHTML = 'Математическое ожидание ' + el1.matWaiting + '  Дисперсия ' + el1.dispersion
+        + '  Максимум ' + el1.max + ' Минимум ' + el1.min;
     document.getElementById(nameOfGraph).appendChild(firstValueStatisticsContainer);
 
     const secondValueStatisticsContainer = document.createElement('div');
     //стили
     secondValueStatisticsContainer.classList.add('secondStatistics');
-    secondValueStatisticsContainer.innerHTML ='Математическое ожидание '+ obj.el2.matWaiting + '  Дисперсия ' + obj.el2.dispersion
-        + '  Максимум ' + obj.el2.max + ' Минимум ' + obj.el2.min;
+    secondValueStatisticsContainer.innerHTML = 'Математическое ожидание ' + el2.matWaiting + '  Дисперсия ' + el2.dispersion
+        + '  Максимум ' + el2.max + ' Минимум ' + el2.min;
     document.getElementById(nameOfGraph).appendChild(secondValueStatisticsContainer);
-
-
-
-   
 
 
     //hiders to hide add banners
@@ -109,23 +107,53 @@ const renderChart = function (obj,nameOfGraph) {
     chart.render();
 };
 
+const createSpaceForGraphs = function (nameOfButtons, listOfParameters) {
+
+    for (i in nameOfButtons) {
+
+        const buttonContainer = document.createElement('div');
+
+        buttonContainer.id = nameOfButtons[i];
+        buttonContainer.innerHTML = nameOfButtons[i] + '';
+
+        document.getElementById('main').appendChild(buttonContainer);
 
 
+        for (j in listOfParameters[i]) {
+            const someDiv = document.createElement('div');
+            someDiv.classList.add('chart');
+            someDiv.id = listOfParameters[i][j][0].name;
+            document.getElementById(nameOfButtons[i]).appendChild(someDiv);
+        }
 
-const fillTheTable = function (name) {
+        const tableContainer = document.createElement('div');
+
+        tableContainer.id = 'table' + i;
+
+
+        document.getElementById(nameOfButtons[i]).appendChild(tableContainer);
+        fillTheTable('table' + i, listOfParameters[i])
+
+
+    }
+
+}
+
+
+const fillTheTable = function (name, data) {
 
     var table = document.createElement('TABLE')
     var tableBody = document.createElement('TBODY')
-    table.border = '15';
+    table.border = '1';
     table.appendChild(tableBody);
     var heading = new Array();
-    heading[0] = "Название режима"
-    heading[1] = "Параметр"
-    heading[2] = "Пуск"
-    heading[3] = "Математическое ожидание"
-    heading[4] = "Дисперсия"
-    heading[5] = "Максимум"
-    heading[6] = "Минимум"
+
+    heading[0] = "Параметр";
+    heading[1] = "Дата  пуска";
+    heading[2] = "Математическое ожидание";
+    heading[3] = "Дисперсия";
+    heading[4] = "Максимум";
+    heading[5] = "Минимум";
 
     //TABLE COLUMNS
     var tr = document.createElement('TR');
@@ -139,20 +167,48 @@ const fillTheTable = function (name) {
 
 
     //TABLE ROWS
-    for (i = 0; i < 5; i++) {
-        var tr = document.createElement('TR');
-        for (j = 0; j < 7; j++) {
+
+
+    for (i = 0; i < data.length; i++) {
+
+
+        for (j = 0; j < data[i].length; j++) {
+            var tr = document.createElement('TR');
             var td = document.createElement('TD');
-            td.appendChild(document.createTextNode(i+j));
-            tr.appendChild(td)
+            td.appendChild(document.createTextNode(data[i][j].name));
+            tr.appendChild(td);
+
+            td = document.createElement('TD');
+            if (j == 0) {
+                td.appendChild(document.createTextNode('2012-06'));
+            }
+            else td.appendChild(document.createTextNode('2012-09'));
+            tr.appendChild(td);
+
+            td = document.createElement('TD');
+            td.appendChild(document.createTextNode(data[i][j].matWaiting));
+            tr.appendChild(td);
+
+            td = document.createElement('TD');
+            td.appendChild(document.createTextNode(data[i][j].dispersion));
+            tr.appendChild(td);
+
+            td = document.createElement('TD');
+            td.appendChild(document.createTextNode(data[i][j].max));
+            tr.appendChild(td);
+
+            td = document.createElement('TD');
+            td.appendChild(document.createTextNode(data[i][j].min));
+            tr.appendChild(td);
+
+            tableBody.appendChild(tr);
         }
-        tableBody.appendChild(tr);
+
     }
-    document.getElementById('painting').appendChild(table);
-
-
+    document.getElementById(name).appendChild(table);
 
 };
+
 
 const accordion = function () {
 
